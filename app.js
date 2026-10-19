@@ -190,8 +190,9 @@ const artworks = [
     dimensions: '120 × 160 cm',
 
     installations: [
-    '/images/monsieur-vert-installation-01.jpg',
-    '/images/monsieur-vert-installation-02.jpg'
+    'images/monsieur-vert-installation-01.jpg',
+    'images/monsieur-vert-installation-02.jpg',
+    'images/monsieur-vert-installation-03.jpg'
     ],
 
     medium: {
@@ -292,8 +293,8 @@ const artworks = [
 
   return {
     ...artwork,
-    image: `/images/artwork-${number}.jpg`,
-    detail: `/images/artwork-${number}-detail.jpg`
+    image: `images/artwork-${number}.jpg`,
+    detail: `images/artwork-${number}-detail.jpg`
   };
 });
 
@@ -373,7 +374,7 @@ function img(artwork, extra = '') {
 function footer() {
   return `
     <footer>
-      <a href="/">ATELIER ADAM</a>
+      <a href="./">ATELIER BYSENHA</a>
       <span>${t('selected')}, 2024–2026</span>
       <button data-contact>${t('contact')}</button>
     </footer>
@@ -396,7 +397,7 @@ function artworkFacts(artwork) {
 function home() {
   const scenes = artworks.map((artwork, i) => `
     <a
-      href="/works/${artwork.id}/"
+      href="works/${artwork.id}/"
       class="scene"
       data-scene="${i}"
       data-cursor="${t('view')}"
@@ -454,7 +455,7 @@ function home() {
 
       <a
         class="large-link"
-        href="/index/"
+        href="index/"
         data-cursor="${t('view')}"
       >
         ${t('selected')}
@@ -477,7 +478,7 @@ function index() {
   const works = artworks.map(artwork => `
     <a
       class="work"
-      href="/works/${artwork.id}/"
+      href="works/${artwork.id}/"
       data-cursor="${t('view')}"
     >
       <figure>
@@ -576,7 +577,7 @@ function work(artwork) {
 
       <a
         class="next-work"
-        href="/works/${next.id}/"
+        href="works/${next.id}/"
         data-cursor="${t('nextCursor')}"
       >
         <div>
@@ -602,7 +603,7 @@ function about() {
     <article class="page about-layout">
       <img
         class="about-image"
-        src="/images/artist-portrait.jpg?v=4"
+        src="images/artist-portrait.jpg?v=4"
         alt="${t('portrait')}"
       >
 
@@ -633,7 +634,7 @@ function updateLanguageLabels() {
   document.documentElement.lang = language;
 
   const header = document.querySelector('header');
-  header.querySelector('.brand').textContent = 'ATELIER ADAM';
+  header.querySelector('.brand').textContent = 'ATELIER BYSENHA';
 
   let selector = document.querySelector('#language-select');
 
@@ -664,8 +665,8 @@ function updateLanguageLabels() {
   menu.setAttribute('aria-label', t('navigation'));
   contact.setAttribute('aria-label', t('studioContact'));
 
-  const indexLink = menu.querySelector('a[href="/index/"]');
-  const aboutLink = menu.querySelector('a[href="/about/"]');
+  const indexLink = menu.querySelector('a[href="index/"]');
+  const aboutLink = menu.querySelector('a[href="about/"]');
   const contactButton = menu.querySelector('[data-contact]');
 
   if (indexLink) indexLink.textContent = t('index');
@@ -741,7 +742,7 @@ function startIndexScroll() {
 
   function drift(now) {
     if (
-      !location.pathname.startsWith('/index') ||
+      !getSitePath().startsWith('/index') ||
       menu.open ||
       contact.open
     ) {
@@ -788,10 +789,27 @@ function startIndexScroll() {
 // ROUTING AND METADATA
 // ============================================================
 
+function getSitePath() {
+  const root = new URL(document.baseURI).pathname;
+  const pathname = location.pathname;
+
+  if (pathname === root.slice(0, -1)) {
+    return '/';
+  }
+
+  if (pathname.startsWith(root)) {
+    const pagePath = '/' + pathname.slice(root.length);
+    return pagePath === '/index.html' ? '/' : pagePath;
+  }
+
+  return pathname;
+}
+
+
 function render(autoScroll = true) {
   stopIndexScroll();
 
-  route = location.pathname;
+  route = getSitePath();
 
   const artwork = artworks.find(item =>
     route === `/works/${item.id}/` ||
@@ -802,16 +820,16 @@ function render(autoScroll = true) {
   if (artwork) {
     app.innerHTML = work(artwork);
     document.title =
-      `${translated(artwork.title)} — Atelier Adam`;
+      `${translated(artwork.title)} — Atelier BySenha`;
   } else if (route.startsWith('/about')) {
     app.innerHTML = about();
-    document.title = `${t('about')} — Atelier Adam`;
+    document.title = `${t('about')} — Atelier BySenha`;
   } else if (route.startsWith('/index')) {
     app.innerHTML = index();
-    document.title = `${t('selected')} — Atelier Adam`;
+    document.title = `${t('selected')} — Atelier BySenha`;
   } else {
     app.innerHTML = home();
-    document.title = `Atelier Adam — ${t('selected')}`;
+    document.title = `Atelier BySenha — ${t('selected')}`;
   }
 
   const description = artwork
@@ -832,7 +850,7 @@ function render(autoScroll = true) {
 
   document.querySelector(
     'link[rel="canonical"]'
-  )?.setAttribute('href', location.origin + route);
+  )?.setAttribute('href', location.origin + location.pathname);
 
   bind();
   updateLanguageLabels();
@@ -852,7 +870,7 @@ function render(autoScroll = true) {
 
 function navigate(url) {
   const change = () => {
-    history.pushState({}, '', url);
+    history.pushState({}, '', new URL(url, document.baseURI));
 
     window.scrollTo({
       top: 0,
@@ -894,7 +912,7 @@ document.addEventListener('click', event => {
   menu.close();
   contact.close();
 
-  navigate(link.pathname + link.search);
+  navigate(link.href);
 });
 
 window.addEventListener('popstate', () => {

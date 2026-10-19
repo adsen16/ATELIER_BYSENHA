@@ -2,13 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+      <script>
+        (() => {
+          const repositoryPath = '/ATELIER_BYSENHA/';
 
+          const siteRoot =
+            location.pathname === '/ATELIER_BYSENHA' ||
+            location.pathname.startsWith(repositoryPath)
+              ? repositoryPath
+              : '/';
+
+          const base = document.createElement('base');
+          base.href = location.origin + siteRoot;
+          document.head.prepend(base);
+        })();
+      </script>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1"
     >
 
-    <title>Historical Brown — Atelier Adam</title>
+    <title>Historical Brown — Atelier BySenha</title>
 
     <meta
       name="description"
@@ -20,7 +34,7 @@
 
     <meta
       property="og:title"
-      content="Historical Brown — Atelier Adam"
+      content="Historical Brown — Atelier BySenha"
     >
 
     <meta
@@ -28,7 +42,7 @@
       content="A collection of contemporary paintings."
     >
 
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="./">
 
     <!-- Browser tab icon -->
     <link
@@ -38,13 +52,13 @@
     >
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
   </head>
 
   <body>
     <!-- Header -->
     <header>
-      <a class="brand" href="/">ATELIER</a>
+      <a class="brand" href="./">ATELIER BYSENHA</a>
 
       <button
         class="menu-toggle"
@@ -76,8 +90,8 @@
       </button>
 
       <nav class="menu-content">
-        <a href="/index/">Index</a>
-        <a href="/about/">About</a>
+        <a href="index/">Index</a>
+        <a href="about/">About</a>
         <button data-contact>Contact</button>
       </nav>
 
@@ -105,8 +119,9 @@
         <div class="contact-painting-float">
           <div class="contact-painting-spin">
             <div class="contact-painting-front">
-              <img src="/images/artwork-02.jpg" alt="">
+              <img src="images/artwork-02.jpg" alt="">
             </div>
+            <div class="contact-painting-back"></div>
             <div class="contact-edge contact-edge-left"></div>
             <div class="contact-edge contact-edge-right"></div>
             <div class="contact-edge contact-edge-top"></div>
@@ -120,7 +135,7 @@
         <div>
           <p>EMAIL</p>
 
-          <a href="mailto:artist@example.com">
+          <a href="mailto:adsen16@outlook.com">
             adsen16@outlook.com
           </a>
         </div>
@@ -130,11 +145,11 @@
           <p>INSTAGRAM</p>
 
           <a
-            href="https://www.instagram.com/adam_ijd/"
+            href="https://www.instagram.com/atelier_bysenha/"
             target="_blank"
             rel="noopener"
           >
-            @adam_ijd
+            @atelier_bysenha
           </a>
         </div>
 
@@ -150,6 +165,6 @@
     <div class="cursor" aria-hidden="true"></div>
 
     <!-- Website logic -->
-    <script src="/app.js?v=3" defer></script>
+    <script src="app.js?v=4" defer></script>
   </body>
 </html>

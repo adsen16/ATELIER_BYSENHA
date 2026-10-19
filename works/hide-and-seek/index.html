@@ -2,13 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <script>
+      (() => {
+        const repositoryPath = '/ATELIER_BYSENHA/';
+
+        const siteRoot =
+          location.pathname === '/ATELIER_BYSENHA' ||
+          location.pathname.startsWith(repositoryPath)
+            ? repositoryPath
+            : '/';
+
+        const base = document.createElement('base');
+        base.href = location.origin + siteRoot;
+        document.head.prepend(base);
+      })();
+    </script>
+    
 
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1"
     >
 
-    <title>Hide and Seek — Atelier Adam</title>
+    <title>Hide and Seek — Atelier BySenha</title>
 
     <meta
       name="description"
@@ -19,7 +35,7 @@
 
     <meta
       property="og:title"
-      content="Hide and Seek — Atelier Adam"
+      content="Hide and Seek — Atelier BySenha"
     >
 
     <meta
@@ -27,7 +43,7 @@
       content="A collection of contemporary paintings."
     >
 
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="./">
 
     <link
       rel="icon"
@@ -35,13 +51,13 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f5f3ee'/%3E%3Cpath d='M8 25L16 6L24 25M11 19H21' fill='none' stroke='%2323231f' stroke-width='2'/%3E%3C/svg%3E"
     >
 
-    <link rel="stylesheet" href="/style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
   </head>
 
   <body>
     <!-- Header -->
     <header>
-      <a class="brand" href="/">ATELIER</a>
+      <a class="brand" href="./">ATELIER BySenha</a>
 
       <button
         class="menu-toggle"
@@ -73,8 +89,8 @@
       </button>
 
       <nav class="menu-content">
-        <a href="/index/">Index</a>
-        <a href="/about/">About</a>
+        <a href="index/">Index</a>
+        <a href="about/">About</a>
         <button data-contact>Contact</button>
       </nav>
 
@@ -102,8 +118,9 @@
         <div class="contact-painting-float">
           <div class="contact-painting-spin">
             <div class="contact-painting-front">
-              <img src="/images/artwork-02.jpg" alt="">
+              <img src="images/artwork-02.jpg" alt="">
             </div>
+            <div class="contact-painting-back"></div>
             <div class="contact-edge contact-edge-left"></div>
             <div class="contact-edge contact-edge-right"></div>
             <div class="contact-edge contact-edge-top"></div>
@@ -125,11 +142,11 @@
           <p>INSTAGRAM</p>
 
           <a
-            href="https://www.instagram.com/adam_ijd/"
+            href="https://www.instagram.com/atelier_bysenha/"
             target="_blank"
             rel="noopener"
           >
-            @adam_ijd
+            @atelier_bysenha
           </a>
         </div>
 
@@ -146,6 +163,6 @@
     <!-- Custom cursor -->
     <div class="cursor" aria-hidden="true"></div>
 
-    <script src="/app.js?v=3" defer></script>
+    <script src="app.js?v=4" defer></script>
   </body>
 </html>
