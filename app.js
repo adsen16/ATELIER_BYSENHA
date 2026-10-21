@@ -187,7 +187,7 @@ const artworks = [
       zh: '法国，里尔'
     },
 
-    dimensions: '120 × 160 cm',
+    dimensions: '60 × 80 cm',
 
     installations: [
     'images/monsieur-vert-installation-01.jpg',
@@ -220,7 +220,7 @@ const artworks = [
       zh: '中国，苏州'
     },
 
-    dimensions: '100 × 140 cm',
+    dimensions: '70 × 220 cm',
 
     medium: {
       en: 'Oil pastel on Chinese canvas',
@@ -247,7 +247,7 @@ const artworks = [
       zh: '法国，巴黎'
     },
 
-    dimensions: '110 × 150 cm',
+    dimensions: '40 × 40 cm',
 
     medium: {
       en: 'Paint and pigments on canvas',
@@ -274,7 +274,7 @@ const artworks = [
       zh: '法国，巴黎'
     },
 
-    dimensions: '90 × 120 cm',
+    dimensions: '50 × 70 cm',
 
     medium: {
       en: 'Paint and pigments on canvas',
