@@ -318,3 +318,33 @@ html[lang="zh"] .menu-content button {
   appearance: none;
   -webkit-appearance: none;
 }
+
+footer.site-footer {
+  display: block;
+  padding: 24px 40px;
+}
+
+.site-footer .footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-footer .footer-copyright {
+  max-width: 760px;
+  margin-top: 16px;
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.site-footer .footer-copyright p {
+  margin: 4px 0;
+}
+
+@media (max-width: 700px) {
+  footer.site-footer {
+    padding: 20px;
+  }
+}

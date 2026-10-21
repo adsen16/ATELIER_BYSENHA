@@ -381,10 +381,20 @@ function img(artwork, extra = '') {
 
 function footer() {
   return `
-    <footer>
-      <a href="./">ATELIER BYSENHA</a>
-      <span>${t('selected')}, 2024–2026</span>
-      <button data-contact>${t('contact')}</button>
+    <footer class="site-footer">
+      <div class="footer-main">
+        <a href="./">ATELIER BYSENHA</a>
+        <button data-contact>${t('contact')}</button>
+      </div>
+
+      <div class="footer-copyright">
+        <p>
+          © ${new Date().getFullYear()} Adam Senhadji —
+          Atelier BySenha. ${t('All rights reserved')}
+        </p>
+
+        <p>${t('copyrightNotice')}</p>
+      </div>
     </footer>
   `;
 }
