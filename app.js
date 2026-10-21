@@ -293,8 +293,8 @@ const artworks = [
 
   return {
     ...artwork,
-    image: `images/artwork-${number}.jpg`,
-    detail: `images/artwork-${number}-detail.jpg`
+    image: `images/artwork-${number}.jpg?v=2`,
+    detail: `images/artwork-${number}-detail.jpg?v=2`
   };
 });
 
