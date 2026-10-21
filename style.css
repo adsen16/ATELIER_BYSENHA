@@ -251,3 +251,70 @@ html[lang="zh"] .menu-content button {
   padding: 0;
   text-align: left;
 }
+
+@media (max-width: 700px) {
+  /* Stable viewport while the browser toolbar appears/disappears. */
+  .stage {
+    height: 100svh;
+  }
+
+  /* Leave space beneath the opening painting. */
+  .floating {
+    top: 43%;
+  }
+
+  .floor-shadow {
+    top: 74%;
+  }
+
+  /* Keep the entry instructions visible above the screen edge. */
+  .intro-caption {
+    left: 20px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    font-size: 10px;
+    max-width: 42%;
+  }
+
+  .scroll-note {
+    right: 20px;
+    bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+    font-size: 10px;
+    max-width: 45%;
+    text-align: right;
+  }
+
+  /* Comfortable slider controls for fingers. */
+  .slider-controls button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Allow natural vertical scrolling when touching the slider. */
+  .slider {
+    touch-action: pan-y pinch-zoom;
+  }
+}
+
+/* The custom cursor is unnecessary on touch devices. */
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}
+
+#menu .menu-content > a,
+#menu .menu-content > button {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-align: left;
+  text-indent: 0;
+}
+
+#menu .menu-content > button {
+  appearance: none;
+  -webkit-appearance: none;
+}

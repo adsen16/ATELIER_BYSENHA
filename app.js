@@ -263,8 +263,8 @@ const artworks = [
   },
 
   {
-    id: '1000-buddah',
-    title: '1000 Buddah',
+    id: 'la-danse-verte',
+    title: 'La Danse Verte',
     year: '2026',
     sold: false,
 
@@ -347,11 +347,19 @@ function fitArtwork(image) {
 
   const ratio = image.naturalWidth / image.naturalHeight;
 
+  const mobileOpening =
+    window.innerWidth <= 700 &&
+    frame.classList.contains('floating');
+
+  // Smaller opening painting on phones.
+  const maxWidth = mobileOpening ? 54 : 70;
+  const maxHeight = mobileOpening ? 42 : 60;
+
   frame.style.width =
-    `min(70vw, ${60 * ratio}vh, 850px)`;
+    `min(${maxWidth}vw, ${maxHeight * ratio}svh, 850px)`;
 
   frame.style.height =
-    `min(${70 / ratio}vw, 60vh, ${850 / ratio}px)`;
+    `min(${maxWidth / ratio}vw, ${maxHeight}svh, ${850 / ratio}px)`;
 
   scrollDirty = true;
 }
@@ -1071,6 +1079,9 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 window.addEventListener('resize', () => {
+  app.querySelectorAll('.floating img, .wall-artwork img')
+    .forEach(fitArtwork);
+
   scrollDirty = true;
 });
 
